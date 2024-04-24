@@ -1,4 +1,4 @@
 [phases.setup]
-cmd = '''
+cmds = '''
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash -s stable && printf '\neval "$(~/.rbenv/bin/rbenv init -)"' >> /root/.profile && . /root/.profile && rbenv install 2.1.2 && rbenv global 2.1.2 && gem install bundler -v 2.1.4
 '''
