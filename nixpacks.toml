@@ -1,0 +1,20 @@
+[node.setup]
+nixPkgs = ["nodejs_18", "npm-9_x", "procps", "libpq-dev", "git", "curl", "autoconf", "bison", "build-essential", "libssl-dev", "libyaml-dev", "libreadline6-dev", "zlib1g-dev", "libncurses5-dev", "libffi-dev", "libgdbm6", "libgdbm-dev", "libdb-dev"]
+cmds = '''
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash -s stable && printf '\neval "$(~/.rbenv/bin/rbenv init -)"' >> /root/.profile && . /root/.profile && rbenv install 2.1.2 && rbenv global 2.1.2 && gem install bundler -v 2.1.4
+'''
+
+[node.install]
+cmds = ```
+bundle install
+'''
+
+[node.build]
+cmds = '''
+bundle exec rake assets:precompile
+'''
+
+[node.start]
+cmds = '''
+bundle exec bin/rails server -b 0.0.0.0 -p ${PORT:-3000} -e $RAILS_ENV
+'''
